@@ -1,28 +1,40 @@
 fn main() {
-    song();
+    lyrics();
 }
 
-fn song(){
-    let mut index: i32 = 0;
-    let mut aux;
+fn lyrics() {
+    let index = 0;
+    let contador = 1;
+    let phrase_array = [
+        "A partridge in a pear tree",
+        "Two turtle doves",
+        "Three French hens",
+        "Four calling birds",
+        "Five golden rings",
+        "Six geese a-laying",
+        "Seven swans a-swimming",
+        "Eight maids a-milking",
+        "Nine ladies dancing",
+        "Ten lords a-leaping",
+        "Eleven pipers piping",
+        "Twelve drummers drumming",
+    ];
+    mostrar_letra(phrase_array, index, contador);
+}
 
-    let phrase_array = ["A partridge in a pear tree", "Two turtle doves","Three French hens","Four calling birds","Five golden rings","Six geese a-laying","Seven swans a-swimming","Eight maids a-milking","Nine ladies dancing","Ten lords a-leaping","Eleven pipers piping","Twelve drummers drumming",""];
-   
-    while index<12 {
-        
-        println!("| on the {} day of Christmas, My true love sent to me",index+1);
-        aux=index;
-        loop {
-            if aux>=0 {
-                println!("|__*{}",phrase_array[aux as usize]);
-                aux-=1;
-            }else{
-                break;
-            }
+fn mostrar_letra(phrase_array: [&str; 12], mut index: i32, mut contador: i32) {
+    for _elem in phrase_array.iter() {
+        println!(
+            "| on the {} day of Christmas, My true love sent to me",
+            index + 1
+        );
+        println!("|__*{}!", _elem);
+        for elementrev in phrase_array[..index as usize].iter().rev() {
+            println!("|{} __*{}", contador, elementrev);
+            contador += 1;
         }
+        contador = 1;
         println!("------");
-
-        index+=1;
-
+        index += 1;
     }
 }
